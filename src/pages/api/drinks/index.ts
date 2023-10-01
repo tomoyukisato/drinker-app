@@ -1,6 +1,7 @@
 import prisma from "@/lib/prisma";
 import { NextApiRequest, NextApiResponse } from "next";
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default async (_req: NextApiRequest, _res: NextApiResponse) => {
     const { method, body } = _req;
     console.log(method);
