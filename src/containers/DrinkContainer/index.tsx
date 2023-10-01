@@ -1,5 +1,5 @@
 import { DrinkDataTable } from "@/components/features/DrinkDataTable";
-import { useFetchDrinks } from "@/hooks/drink";
+import useFetchDrinks from "@/hooks/drink/useFetchDrinks";
 
 export const DrinkContainer = () => {
     const { data } = useFetchDrinks();

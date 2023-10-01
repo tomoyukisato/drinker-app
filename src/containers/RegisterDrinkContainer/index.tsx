@@ -1,10 +1,10 @@
 
 import { RegisterDrink } from "@/components/features/RegisterDrink";
-import { useCreateDrinks } from "@/hooks/drink";
+import useCreateDrinks from "@/hooks/drink/useCreateDrinks";
 import { SelectChangeEvent } from "@mui/material";
-import React, { ChangeEvent, MouseEvent } from "react";
+import React, { ChangeEvent, MouseEvent, useEffect, useState} from "react";
 
-export const RegisterDrinkContainer = () => {
+const RegisterDrinkContainer = () => {
     // const { data } = useCocktail();
     console.log("container");
     // console.log(data);
@@ -31,16 +31,6 @@ export const RegisterDrinkContainer = () => {
         event.target.value === "" ? setIsSelectTypeError(true) : setIsSelectTypeError(false);
     };
 
-    const handleRequestRegisterButton = (event: MouseEvent<HTMLButtonElement>) => {
-        console.log("register");
-        let drink = JSON.stringify({
-            name: inputedDrinkName,
-            drink_type: selectedDrinkType,
-            ml_per_one_drink: selectedMlPerOneDrink
-        })
-        !checkViolation() ? useCreateDrinks(drink) : console.log("b");
-        // useCreateDrinks(drink);
-    };
 
     function checkViolation(): boolean {
         inputedDrinkName === "" ? setIsNameError(true) : setIsNameError(false);
@@ -54,7 +44,13 @@ export const RegisterDrinkContainer = () => {
             return false;
         }
     }
-    return <RegisterDrink
+
+    const handleRequestRegisterButton = (event: MouseEvent<HTMLButtonElement>) => {
+        HandleRequestRegisterButton(inputedDrinkName, selectedDrinkType, selectedMlPerOneDrink)
+    }
+
+    return (
+    <RegisterDrink
         drinkName={inputedDrinkName}
         isNameError={isNameError}
         mlPerOneDrink={selectedMlPerOneDrink}
@@ -66,6 +62,19 @@ export const RegisterDrinkContainer = () => {
         handleChangeMlPerOneDrinkSelectBox={handleChangeMlPerOneDrinkSelectBox}
         handleChangeDrinkTypeSelectBox={handleChangeDrinkTypeSelectBox}
         handleRequestRegisterButton={handleRequestRegisterButton}
-    />;
+    />);
 
 };
+
+const HandleRequestRegisterButton = (inputedDrinkName: string, selectedDrinkType: string, selectedMlPerOneDrink: string) => {
+    console.log("register");
+    let drink = JSON.stringify({
+        name: inputedDrinkName,
+        drink_type: selectedDrinkType,
+        ml_per_one_drink: selectedMlPerOneDrink
+    })
+    useCreateDrinks(drink);
+    // !checkViolation() ? useCreateDrinks(drink) : console.log("b");
+};
+
+export default RegisterDrinkContainer;
