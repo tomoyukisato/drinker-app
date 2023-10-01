@@ -6,7 +6,7 @@ import CocktailList from "@/pages/drink";
 import { CocktailTable } from "../features/CocktailTable";
 
 
-export const ShowDrinksLayout = (data) => {
+export const ShowDrinksLayout = (data: CocktailDrinks | undefined) => {
     return (
         <Box sx={{ display: 'flex' }}>
             <CocktailTable cocktails={data} />
