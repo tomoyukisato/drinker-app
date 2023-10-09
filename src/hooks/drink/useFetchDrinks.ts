@@ -10,8 +10,7 @@ export default function useFetchDrinks() {
             return res.data
         });
 
-    const { data, error, isValidating } = useSWR<Array<Drink>, Error>(
-        '/api/drinks',
+    const { data, error, isValidating } = useSWR<Array<Drink>, Error>('/api/drinks',
         fetcher,
         {
             revalidateOnFocus: false

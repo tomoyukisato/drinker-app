@@ -8,7 +8,7 @@ export function useCocktail() {
         });
 
     const { data, error, isValidating } = useSWR<CocktailDrinks, Error>(
-        '/api/cocktail',
+        '/apis/cocktail',
         fetcher,
         {
             revalidateOnFocus: false

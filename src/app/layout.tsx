@@ -1,9 +1,11 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import Head from 'next/head'
+import Layout from '@/components/layouts/BaseLayout'
+import { Component } from 'react'
 
 
-const inter = Inter({ subsets: ['latin'] })
+// const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,9 +18,22 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
-    
+    <html lang="ja-JP">
+      <head>
+          <meta charSet="utf-8" />
+          <meta name="format-detection" content="telephone=no" />
+          <link rel="shortcut icon" href={'/favicon.ico'} />
+          <link rel="apple-touch-icon" href={'/logo.png'} />
+      </head>
+      <body>
+        <Layout>
+              <Head>
+                  <title />
+                  <meta name='viewport' content='width=device-width, initial-scale=1' />
+              </Head>
+              {children}
+          </Layout>
+      </body>
+  </html>    
   )
 }
